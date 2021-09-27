@@ -143,11 +143,12 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(734, 129);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(128, 35);
+            this.label1.Location = new System.Drawing.Point(118, 35);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 15);
             this.label1.TabIndex = 0;
@@ -200,15 +201,14 @@
             this.groupBox1.Size = new System.Drawing.Size(740, 140);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Thông tin cá nhân";
+            this.groupBox1.Text = "Thông tin lương cơ bản";
             // 
             // cbChucVu
             // 
-            this.cbChucVu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbChucVu.FormattingEnabled = true;
             this.cbChucVu.Location = new System.Drawing.Point(452, 35);
             this.cbChucVu.Name = "cbChucVu";
-            this.cbChucVu.Size = new System.Drawing.Size(115, 23);
+            this.cbChucVu.Size = new System.Drawing.Size(216, 23);
             this.cbChucVu.TabIndex = 15;
             // 
             // FQuanLyLuong
@@ -225,7 +225,9 @@
             this.ForeColor = System.Drawing.Color.Black;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FQuanLyLuong";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "THÔNG TIN CÁ NHÂN";
+            this.Load += new System.EventHandler(this.FQuanLyLuong_Load);
             this.groupBox2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
