@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLNhanSuModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DEPARTMENT">
+          <Key>
+            <PropertyRef Name="DEPARTMENTID" />
+          </Key>
+          <Property Name="DEPARTMENTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FOUNDEDDATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EMPLOYEEID" />
+          </Key>
+          <Property Name="EMPLOYEEID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="POSITIONID" Type="int" Nullable="false" />
+          <Property Name="DEPARTMENTID" Type="int" Nullable="false" />
+          <Property Name="FULLNAME" Type="varchar" MaxLength="50" />
+          <Property Name="BIRTHDATE" Type="datetime" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="50" />
+          <Property Name="DATESTARTWORKING" Type="datetime" />
+          <Property Name="SEX" Type="char" MaxLength="3" />
+          <Property Name="PHONE" Type="numeric" Precision="13" Scale="0" />
+        </EntityType>
+        <EntityType Name="POSITION">
+          <Key>
+            <PropertyRef Name="POSITIONID" />
+          </Key>
+          <Property Name="POSITIONID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DEPARTMENTID" Type="int" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SALARY">
+          <Key>
+            <PropertyRef Name="SALARYID" />
+          </Key>
+          <Property Name="SALARYID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="POSITIONID" Type="int" Nullable="false" />
+          <Property Name="BASICSALARY" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'QLNhanSu.dbo.SALARY_DETAIL' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="SALARY_DETAIL">
+          <Key>
+            <PropertyRef Name="EMPLOYEEID" />
+            <PropertyRef Name="SALARYID" />
+            <PropertyRef Name="COEFFICIENTSALARY" />
+            <PropertyRef Name="COEFFICIENTALLOWANCE" />
+          </Key>
+          <Property Name="EMPLOYEEID" Type="int" Nullable="false" />
+          <Property Name="SALARYID" Type="int" Nullable="false" />
+          <Property Name="TIMEGETSALARY" Type="datetime" />
+          <Property Name="COEFFICIENTSALARY" Type="smallint" Nullable="false" />
+          <Property Name="COEFFICIENTALLOWANCE" Type="smallint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DEPARTMENT_POSITION">
+          <End Role="DEPARTMENT" Type="Self.DEPARTMENT" Multiplicity="1" />
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="DEPARTMENTID" />
+            </Principal>
+            <Dependent Role="POSITION">
+              <PropertyRef Name="DEPARTMENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_DAMNHIEM_POSITION">
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POSITION">
+              <PropertyRef Name="POSITIONID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="POSITIONID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_THUOC_DEPARTME">
+          <End Role="DEPARTMENT" Type="Self.DEPARTMENT" Multiplicity="1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="DEPARTMENTID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="DEPARTMENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_POSITION_SALARY">
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="1" />
+          <End Role="SALARY" Type="Self.SALARY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POSITION">
+              <PropertyRef Name="POSITIONID" />
+            </Principal>
+            <Dependent Role="SALARY">
+              <PropertyRef Name="POSITIONID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SALARYDETAIL_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="SALARY_DETAIL" Type="Self.SALARY_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMPLOYEEID" />
+            </Principal>
+            <Dependent Role="SALARY_DETAIL">
+              <PropertyRef Name="EMPLOYEEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SALARYDETAIL_SALARY">
+          <End Role="SALARY" Type="Self.SALARY" Multiplicity="1" />
+          <End Role="SALARY_DETAIL" Type="Self.SALARY_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALARY">
+              <PropertyRef Name="SALARYID" />
+            </Principal>
+            <Dependent Role="SALARY_DETAIL">
+              <PropertyRef Name="SALARYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLNhanSuModelStoreContainer">
+          <EntitySet Name="DEPARTMENT" EntityType="Self.DEPARTMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POSITION" EntityType="Self.POSITION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SALARY" EntityType="Self.SALARY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SALARY_DETAIL" EntityType="Self.SALARY_DETAIL" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SALARY_DETAIL].[EMPLOYEEID] AS [EMPLOYEEID], 
+    [SALARY_DETAIL].[SALARYID] AS [SALARYID], 
+    [SALARY_DETAIL].[TIMEGETSALARY] AS [TIMEGETSALARY], 
+    [SALARY_DETAIL].[COEFFICIENTSALARY] AS [COEFFICIENTSALARY], 
+    [SALARY_DETAIL].[COEFFICIENTALLOWANCE] AS [COEFFICIENTALLOWANCE]
+    FROM [dbo].[SALARY_DETAIL] AS [SALARY_DETAIL]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_DEPARTMENT_POSITION" Association="Self.FK_DEPARTMENT_POSITION">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENT" />
+            <End Role="POSITION" EntitySet="POSITION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_DAMNHIEM_POSITION" Association="Self.FK_EMPLOYEE_DAMNHIEM_POSITION">
+            <End Role="POSITION" EntitySet="POSITION" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_THUOC_DEPARTME" Association="Self.FK_EMPLOYEE_THUOC_DEPARTME">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENT" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_POSITION_SALARY" Association="Self.FK_POSITION_SALARY">
+            <End Role="POSITION" EntitySet="POSITION" />
+            <End Role="SALARY" EntitySet="SALARY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SALARYDETAIL_EMPLOYEE" Association="Self.FK_SALARYDETAIL_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="SALARY_DETAIL" EntitySet="SALARY_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SALARYDETAIL_SALARY" Association="Self.FK_SALARYDETAIL_SALARY">
+            <End Role="SALARY" EntitySet="SALARY" />
+            <End Role="SALARY_DETAIL" EntitySet="SALARY_DETAIL" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLNhanSuModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DEPARTMENT">
+          <Key>
+            <PropertyRef Name="DEPARTMENTID" />
+          </Key>
+          <Property Name="DEPARTMENTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FOUNDEDDATE" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="POSITIONs" Relationship="Self.FK_DEPARTMENT_POSITION" FromRole="DEPARTMENT" ToRole="POSITION" />
+          <NavigationProperty Name="EMPLOYEEs" Relationship="Self.FK_EMPLOYEE_THUOC_DEPARTME" FromRole="DEPARTMENT" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EMPLOYEEID" />
+          </Key>
+          <Property Name="EMPLOYEEID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="POSITIONID" Type="Int32" Nullable="false" />
+          <Property Name="DEPARTMENTID" Type="Int32" Nullable="false" />
+          <Property Name="FULLNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BIRTHDATE" Type="DateTime" Precision="3" />
+          <Property Name="ADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DATESTARTWORKING" Type="DateTime" Precision="3" />
+          <Property Name="SEX" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="PHONE" Type="Decimal" Precision="13" Scale="0" />
+          <NavigationProperty Name="DEPARTMENT" Relationship="Self.FK_EMPLOYEE_THUOC_DEPARTME" FromRole="EMPLOYEE" ToRole="DEPARTMENT" />
+          <NavigationProperty Name="POSITION" Relationship="Self.FK_EMPLOYEE_DAMNHIEM_POSITION" FromRole="EMPLOYEE" ToRole="POSITION" />
+          <NavigationProperty Name="SALARY_DETAIL" Relationship="Self.FK_SALARYDETAIL_EMPLOYEE" FromRole="EMPLOYEE" ToRole="SALARY_DETAIL" />
+        </EntityType>
+        <EntityType Name="POSITION">
+          <Key>
+            <PropertyRef Name="POSITIONID" />
+          </Key>
+          <Property Name="POSITIONID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DEPARTMENTID" Type="Int32" Nullable="false" />
+          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="DEPARTMENT" Relationship="Self.FK_DEPARTMENT_POSITION" FromRole="POSITION" ToRole="DEPARTMENT" />
+          <NavigationProperty Name="EMPLOYEEs" Relationship="Self.FK_EMPLOYEE_DAMNHIEM_POSITION" FromRole="POSITION" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="SALARies" Relationship="Self.FK_POSITION_SALARY" FromRole="POSITION" ToRole="SALARY" />
+        </EntityType>
+        <EntityType Name="SALARY">
+          <Key>
+            <PropertyRef Name="SALARYID" />
+          </Key>
+          <Property Name="SALARYID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="POSITIONID" Type="Int32" Nullable="false" />
+          <Property Name="BASICSALARY" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="POSITION" Relationship="Self.FK_POSITION_SALARY" FromRole="SALARY" ToRole="POSITION" />
+          <NavigationProperty Name="SALARY_DETAIL" Relationship="Self.FK_SALARYDETAIL_SALARY" FromRole="SALARY" ToRole="SALARY_DETAIL" />
+        </EntityType>
+        <EntityType Name="SALARY_DETAIL">
+          <Key>
+            <PropertyRef Name="EMPLOYEEID" />
+            <PropertyRef Name="SALARYID" />
+            <PropertyRef Name="COEFFICIENTSALARY" />
+            <PropertyRef Name="COEFFICIENTALLOWANCE" />
+          </Key>
+          <Property Name="EMPLOYEEID" Type="Int32" Nullable="false" />
+          <Property Name="SALARYID" Type="Int32" Nullable="false" />
+          <Property Name="TIMEGETSALARY" Type="DateTime" Precision="3" />
+          <Property Name="COEFFICIENTSALARY" Type="Int16" Nullable="false" />
+          <Property Name="COEFFICIENTALLOWANCE" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_SALARYDETAIL_EMPLOYEE" FromRole="SALARY_DETAIL" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="SALARY" Relationship="Self.FK_SALARYDETAIL_SALARY" FromRole="SALARY_DETAIL" ToRole="SALARY" />
+        </EntityType>
+        <Association Name="FK_DEPARTMENT_POSITION">
+          <End Role="DEPARTMENT" Type="Self.DEPARTMENT" Multiplicity="1" />
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="DEPARTMENTID" />
+            </Principal>
+            <Dependent Role="POSITION">
+              <PropertyRef Name="DEPARTMENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_THUOC_DEPARTME">
+          <End Role="DEPARTMENT" Type="Self.DEPARTMENT" Multiplicity="1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DEPARTMENT">
+              <PropertyRef Name="DEPARTMENTID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="DEPARTMENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_DAMNHIEM_POSITION">
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POSITION">
+              <PropertyRef Name="POSITIONID" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="POSITIONID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SALARYDETAIL_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="SALARY_DETAIL" Type="Self.SALARY_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMPLOYEEID" />
+            </Principal>
+            <Dependent Role="SALARY_DETAIL">
+              <PropertyRef Name="EMPLOYEEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_POSITION_SALARY">
+          <End Role="POSITION" Type="Self.POSITION" Multiplicity="1" />
+          <End Role="SALARY" Type="Self.SALARY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="POSITION">
+              <PropertyRef Name="POSITIONID" />
+            </Principal>
+            <Dependent Role="SALARY">
+              <PropertyRef Name="POSITIONID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SALARYDETAIL_SALARY">
+          <End Role="SALARY" Type="Self.SALARY" Multiplicity="1" />
+          <End Role="SALARY_DETAIL" Type="Self.SALARY_DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALARY">
+              <PropertyRef Name="SALARYID" />
+            </Principal>
+            <Dependent Role="SALARY_DETAIL">
+              <PropertyRef Name="SALARYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLNhanSuEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DEPARTMENTs" EntityType="Self.DEPARTMENT" />
+          <EntitySet Name="EMPLOYEEs" EntityType="Self.EMPLOYEE" />
+          <EntitySet Name="POSITIONs" EntityType="Self.POSITION" />
+          <EntitySet Name="SALARies" EntityType="Self.SALARY" />
+          <EntitySet Name="SALARY_DETAIL" EntityType="Self.SALARY_DETAIL" />
+          <AssociationSet Name="FK_DEPARTMENT_POSITION" Association="Self.FK_DEPARTMENT_POSITION">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENTs" />
+            <End Role="POSITION" EntitySet="POSITIONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_THUOC_DEPARTME" Association="Self.FK_EMPLOYEE_THUOC_DEPARTME">
+            <End Role="DEPARTMENT" EntitySet="DEPARTMENTs" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_DAMNHIEM_POSITION" Association="Self.FK_EMPLOYEE_DAMNHIEM_POSITION">
+            <End Role="POSITION" EntitySet="POSITIONs" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SALARYDETAIL_EMPLOYEE" Association="Self.FK_SALARYDETAIL_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+            <End Role="SALARY_DETAIL" EntitySet="SALARY_DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_POSITION_SALARY" Association="Self.FK_POSITION_SALARY">
+            <End Role="POSITION" EntitySet="POSITIONs" />
+            <End Role="SALARY" EntitySet="SALARies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SALARYDETAIL_SALARY" Association="Self.FK_SALARYDETAIL_SALARY">
+            <End Role="SALARY" EntitySet="SALARies" />
+            <End Role="SALARY_DETAIL" EntitySet="SALARY_DETAIL" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLNhanSuModelStoreContainer" CdmEntityContainer="QLNhanSuEntities">
+          <EntitySetMapping Name="DEPARTMENTs">
+            <EntityTypeMapping TypeName="QLNhanSuModel.DEPARTMENT">
+              <MappingFragment StoreEntitySet="DEPARTMENT">
+                <ScalarProperty Name="DEPARTMENTID" ColumnName="DEPARTMENTID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="FOUNDEDDATE" ColumnName="FOUNDEDDATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEEs">
+            <EntityTypeMapping TypeName="QLNhanSuModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="EMPLOYEEID" ColumnName="EMPLOYEEID" />
+                <ScalarProperty Name="POSITIONID" ColumnName="POSITIONID" />
+                <ScalarProperty Name="DEPARTMENTID" ColumnName="DEPARTMENTID" />
+                <ScalarProperty Name="FULLNAME" ColumnName="FULLNAME" />
+                <ScalarProperty Name="BIRTHDATE" ColumnName="BIRTHDATE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="DATESTARTWORKING" ColumnName="DATESTARTWORKING" />
+                <ScalarProperty Name="SEX" ColumnName="SEX" />
+                <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POSITIONs">
+            <EntityTypeMapping TypeName="QLNhanSuModel.POSITION">
+              <MappingFragment StoreEntitySet="POSITION">
+                <ScalarProperty Name="POSITIONID" ColumnName="POSITIONID" />
+                <ScalarProperty Name="DEPARTMENTID" ColumnName="DEPARTMENTID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SALARies">
+            <EntityTypeMapping TypeName="QLNhanSuModel.SALARY">
+              <MappingFragment StoreEntitySet="SALARY">
+                <ScalarProperty Name="SALARYID" ColumnName="SALARYID" />
+                <ScalarProperty Name="POSITIONID" ColumnName="POSITIONID" />
+                <ScalarProperty Name="BASICSALARY" ColumnName="BASICSALARY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SALARY_DETAIL">
+            <EntityTypeMapping TypeName="QLNhanSuModel.SALARY_DETAIL">
+              <MappingFragment StoreEntitySet="SALARY_DETAIL">
+                <ScalarProperty Name="EMPLOYEEID" ColumnName="EMPLOYEEID" />
+                <ScalarProperty Name="SALARYID" ColumnName="SALARYID" />
+                <ScalarProperty Name="TIMEGETSALARY" ColumnName="TIMEGETSALARY" />
+                <ScalarProperty Name="COEFFICIENTSALARY" ColumnName="COEFFICIENTSALARY" />
+                <ScalarProperty Name="COEFFICIENTALLOWANCE" ColumnName="COEFFICIENTALLOWANCE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

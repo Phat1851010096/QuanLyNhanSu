@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9c6bf50202c54e2aa51adcd429ec7cf5" Name="Diagram1">
+        <EntityTypeShape EntityType="QLNhanSuModel.DEPARTMENT" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNhanSuModel.EMPLOYEE" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNhanSuModel.POSITION" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNhanSuModel.SALARY" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLNhanSuModel.SALARY_DETAIL" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="QLNhanSuModel.FK_DEPARTMENT_POSITION" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNhanSuModel.FK_EMPLOYEE_THUOC_DEPARTME" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNhanSuModel.FK_EMPLOYEE_DAMNHIEM_POSITION" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNhanSuModel.FK_SALARYDETAIL_EMPLOYEE" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNhanSuModel.FK_POSITION_SALARY" ManuallyRouted="false" />
+        <AssociationConnector Association="QLNhanSuModel.FK_SALARYDETAIL_SALARY" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
