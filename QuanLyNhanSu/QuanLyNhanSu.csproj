@@ -64,10 +64,10 @@
     <Compile Include="DAO\DAO_NhanVien.cs" />
     <Compile Include="DAO\DAO_PhongBan.cs" />
     <Compile Include="DEPARTMENT.cs">
-      <DependentUpon>QLNhanSuEntity.tt</DependentUpon>
+      <DependentUpon>QLNhanSu.tt</DependentUpon>
     </Compile>
     <Compile Include="EMPLOYEE.cs">
-      <DependentUpon>QLNhanSuEntity.tt</DependentUpon>
+      <DependentUpon>QLNhanSu.tt</DependentUpon>
     </Compile>
     <Compile Include="FQuanLyChucVu.cs">
       <SubType>Form</SubType>
@@ -106,30 +106,30 @@
       <DependentUpon>FTrangChu.cs</DependentUpon>
     </Compile>
     <Compile Include="POSITION.cs">
-      <DependentUpon>QLNhanSuEntity.tt</DependentUpon>
+      <DependentUpon>QLNhanSu.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QLNhanSuEntity.Context.cs">
+    <Compile Include="QLNhanSu.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLNhanSuEntity.Context.tt</DependentUpon>
+      <DependentUpon>QLNhanSu.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="QLNhanSuEntity.cs">
+    <Compile Include="QLNhanSu.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLNhanSuEntity.tt</DependentUpon>
+      <DependentUpon>QLNhanSu.tt</DependentUpon>
     </Compile>
-    <Compile Include="QLNhanSuEntity.Designer.cs">
+    <Compile Include="QLNhanSu.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QLNhanSuEntity.edmx</DependentUpon>
+      <DependentUpon>QLNhanSu.edmx</DependentUpon>
     </Compile>
     <Compile Include="SALARY.cs">
-      <DependentUpon>QLNhanSuEntity.tt</DependentUpon>
+      <DependentUpon>QLNhanSu.tt</DependentUpon>
     </Compile>
     <Compile Include="SALARY_DETAIL.cs">
-      <DependentUpon>QLNhanSuEntity.tt</DependentUpon>
+      <DependentUpon>QLNhanSu.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="FQuanLyChucVu.resx">
       <DependentUpon>FQuanLyChucVu.cs</DependentUpon>
@@ -174,29 +174,29 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="QLNhanSuEntity.edmx">
+    <EntityDeploy Include="QLNhanSu.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>QLNhanSuEntity.Designer.cs</LastGenOutput>
+      <LastGenOutput>QLNhanSu.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="QLNhanSuEntity.edmx.diagram">
-      <DependentUpon>QLNhanSuEntity.edmx</DependentUpon>
+    <None Include="QLNhanSu.edmx.diagram">
+      <DependentUpon>QLNhanSu.edmx</DependentUpon>
     </None>
     <None Include="Resources\stt-vui-ve-bien.jpg7_.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="QLNhanSuEntity.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QLNhanSuEntity.Context.cs</LastGenOutput>
-      <DependentUpon>QLNhanSuEntity.edmx</DependentUpon>
-    </Content>
-    <Content Include="QLNhanSuEntity.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLNhanSuEntity.edmx</DependentUpon>
-      <LastGenOutput>QLNhanSuEntity.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="QLNhanSu.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLNhanSu.edmx</DependentUpon>
+      <LastGenOutput>QLNhanSu.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="QLNhanSu.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLNhanSu.edmx</DependentUpon>
+      <LastGenOutput>QLNhanSu.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -23,6 +23,7 @@ namespace QuanLyNhanSu.DAO
                 s.EMPLOYEEID,
                 s.FULLNAME,
                 s.POSITION.NAME,
+                s.DEPARTMENT.DEPARTMENTNAME,
                 s.DATESTARTWORKING,
                 s.PHONE,
                 s.ADDRESS,
@@ -32,8 +33,34 @@ namespace QuanLyNhanSu.DAO
             return ds;
         }
 
+        public dynamic LayDSChucVu()
+        {
+            var ds = db.POSITIONs.Select(s => new
+            {
+                s.POSITIONID,
+                s.NAME
+            }).ToList();
+            return ds;
+        }
 
+        public dynamic LayDSPhongBan()
+        {
+            var ds = db.DEPARTMENTs.Select(s => new
+            {
+                s.DEPARTMENTID,
+                s.DEPARTMENTNAME
+            }).ToList();
+            return ds;
+        }
 
+        public dynamic LayDSGioiTinh()
+        {
+            var ds = db.EMPLOYEEs.Select(s => new
+            {
+                s.SEX
+            }).Distinct().ToList();
+            return ds;
+        }
 
 
 

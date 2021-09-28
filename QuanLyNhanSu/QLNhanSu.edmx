@@ -10,7 +10,7 @@
             <PropertyRef Name="DEPARTMENTID" />
           </Key>
           <Property Name="DEPARTMENTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DEPARTMENTNAME" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FOUNDEDDATE" Type="datetime" />
         </EntityType>
         <EntityType Name="EMPLOYEE">
@@ -179,7 +179,7 @@ warning 6002: The table/view 'QLNhanSu.dbo.SALARY_DETAIL' does not have a primar
             <PropertyRef Name="DEPARTMENTID" />
           </Key>
           <Property Name="DEPARTMENTID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DEPARTMENTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FOUNDEDDATE" Type="DateTime" Precision="3" />
           <NavigationProperty Name="POSITIONs" Relationship="Self.FK_DEPARTMENT_POSITION" FromRole="DEPARTMENT" ToRole="POSITION" />
           <NavigationProperty Name="EMPLOYEEs" Relationship="Self.FK_EMPLOYEE_THUOC_DEPARTME" FromRole="DEPARTMENT" ToRole="EMPLOYEE" />
@@ -350,7 +350,7 @@ warning 6002: The table/view 'QLNhanSu.dbo.SALARY_DETAIL' does not have a primar
             <EntityTypeMapping TypeName="QLNhanSuModel.DEPARTMENT">
               <MappingFragment StoreEntitySet="DEPARTMENT">
                 <ScalarProperty Name="DEPARTMENTID" ColumnName="DEPARTMENTID" />
-                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DEPARTMENTNAME" ColumnName="DEPARTMENTNAME" />
                 <ScalarProperty Name="FOUNDEDDATE" ColumnName="FOUNDEDDATE" />
               </MappingFragment>
             </EntityTypeMapping>
