@@ -1,6 +1,7 @@
 ﻿using QuanLyNhanSu.DAO;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,17 +37,61 @@ namespace QuanLyNhanSu.BUS
             cb.ValueMember = "DEPARTMENTID";
         }
 
-        public void LayDSGoiTinh(ComboBox cb)
+        public bool ThemNhanVien(EMPLOYEE e)
         {
-            cb.DataSource = dNhanVien.LayDSGioiTinh();
-            cb.DisplayMember = "SEX";
+
+            try
+            {
+                dNhanVien.ThemNhanVien(e);
+                return true;
+            }
+            catch (System.Data.Linq.DuplicateKeyException)
+            {
+                return false;
+            }
         }
 
+        public bool XoaNhanVien(EMPLOYEE e)
+        {
+            if (dNhanVien.KiemTraNhanVien(e))
+            {
+                try
+                {
+                    dNhanVien.XoaNhanVien(e);
+                    return true;
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
 
-
-
-
-
+        public bool SuaNhanVien(EMPLOYEE e)
+        {
+            if (dNhanVien.KiemTraNhanVien(e))
+            {
+                try
+                {
+                    dNhanVien.SuaNhanVien(e);
+                    return true;
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
 
 
 

@@ -46,7 +46,6 @@
             this.txtHoTen = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.cbGioiTinh = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dateTimePicker_NgayVaoLam = new System.Windows.Forms.DateTimePicker();
@@ -54,6 +53,7 @@
             this.cbChucVu = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker_NgaySinh = new System.Windows.Forms.DateTimePicker();
+            this.txtGioiTinh = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gVNhanVien)).BeginInit();
@@ -93,6 +93,7 @@
             this.btThem.Text = "Thêm";
             this.btThem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btThem.UseVisualStyleBackColor = true;
+            this.btThem.Click += new System.EventHandler(this.btThem_Click);
             // 
             // btThoat
             // 
@@ -128,6 +129,7 @@
             this.btXoa.Text = "Xóa   ";
             this.btXoa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btXoa.UseVisualStyleBackColor = true;
+            this.btXoa.Click += new System.EventHandler(this.btXoa_Click);
             // 
             // btSua
             // 
@@ -145,6 +147,7 @@
             this.btSua.Text = "Sửa   ";
             this.btSua.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btSua.UseVisualStyleBackColor = true;
+            this.btSua.Click += new System.EventHandler(this.btSua_Click);
             // 
             // panel1
             // 
@@ -253,7 +256,6 @@
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.cbGioiTinh);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.dateTimePicker_NgayVaoLam);
@@ -262,6 +264,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.dateTimePicker_NgaySinh);
             this.groupBox1.Controls.Add(this.txtHoTen);
+            this.groupBox1.Controls.Add(this.txtGioiTinh);
             this.groupBox1.Controls.Add(this.txtSDT);
             this.groupBox1.Controls.Add(this.txtDiaChi);
             this.groupBox1.Controls.Add(this.txtMaNV);
@@ -289,19 +292,6 @@
             this.label7.Size = new System.Drawing.Size(71, 17);
             this.label7.TabIndex = 24;
             this.label7.Text = "Họ và Tên";
-            // 
-            // cbGioiTinh
-            // 
-            this.cbGioiTinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbGioiTinh.FormattingEnabled = true;
-            this.cbGioiTinh.Items.AddRange(new object[] {
-            "Nam",
-            "Nu"});
-            this.cbGioiTinh.Location = new System.Drawing.Point(721, 159);
-            this.cbGioiTinh.Margin = new System.Windows.Forms.Padding(4);
-            this.cbGioiTinh.Name = "cbGioiTinh";
-            this.cbGioiTinh.Size = new System.Drawing.Size(143, 25);
-            this.cbGioiTinh.TabIndex = 22;
             // 
             // label4
             // 
@@ -369,6 +359,14 @@
             this.dateTimePicker_NgaySinh.Size = new System.Drawing.Size(224, 25);
             this.dateTimePicker_NgaySinh.TabIndex = 13;
             // 
+            // txtGioiTinh
+            // 
+            this.txtGioiTinh.Location = new System.Drawing.Point(732, 154);
+            this.txtGioiTinh.Margin = new System.Windows.Forms.Padding(4);
+            this.txtGioiTinh.Name = "txtGioiTinh";
+            this.txtGioiTinh.Size = new System.Drawing.Size(143, 25);
+            this.txtGioiTinh.TabIndex = 11;
+            // 
             // FQuanLyNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -417,11 +415,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker_NgaySinh;
         private System.Windows.Forms.ComboBox cbChucVu;
-        private System.Windows.Forms.ComboBox cbGioiTinh;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dateTimePicker_NgayVaoLam;
         private System.Windows.Forms.ComboBox cbPhongBan;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtGioiTinh;
     }
 }
