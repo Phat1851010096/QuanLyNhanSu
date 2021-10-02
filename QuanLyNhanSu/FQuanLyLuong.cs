@@ -23,7 +23,7 @@ namespace QuanLyNhanSu
         public void HienThiDSLuong()
         {
             dataGridView1.DataSource = null;
-            bLuong.LayDSSanPham(dataGridView1);
+            bLuong.LayDSLuong(dataGridView1);
 
             dataGridView1.Columns[0].Width = (int)(dataGridView1.Width * 0.2);
             dataGridView1.Columns[1].Width = (int)(dataGridView1.Width * 0.2);
@@ -35,7 +35,7 @@ namespace QuanLyNhanSu
         {
             HienThiDSLuong();
             bLuong.LayDSChucVu(cbChucVu);
-
+            txtMaLuong.Enabled = false;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -95,7 +95,7 @@ namespace QuanLyNhanSu
                         if (bLuong.TaoLuongChoChucVu(chucVu, luongCoBan))
                         {
                             MessageBox.Show("Thêm thành công!");
-                            this.Close();
+                            bLuong.LayDSLuong(dataGridView1);
                         }
                         else
                         {
@@ -112,6 +112,97 @@ namespace QuanLyNhanSu
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin và đúng định dạng!");
             }
+        }
+
+        private void btSua_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int maChucVu = int.Parse(cbChucVu.SelectedValue.ToString());
+                double luongCoBan = Double.Parse(txtLuongCoBan.Text);
+                if (luongCoBan < 1000)
+                {
+                    MessageBox.Show("Vui lòng nhập lại thông tin!");
+                }
+                else
+                {
+                    SALARY s = new SALARY();
+                    s.POSITIONID = maChucVu;
+                    s.BASICSALARY = (decimal)luongCoBan;
+
+                    //Gọi sự kiện sửa của BUS
+                    if (bLuong.SuaLuongTheoPositionID(s))
+                    {
+                        MessageBox.Show("Sửa lương theo vị trí thành công!");
+                        bLuong.LayDSLuong(dataGridView1);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sửa thất bại!");
+     
+                    }
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                
+                if (ex is System.NullReferenceException)
+                {
+                    MessageBox.Show("Chức vụ chưa có lương! \nHãy chọn THÊM LƯƠNG.");
+                    return;
+                }
+                if (ex is System.FormatException)
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin và đúng định dạng!");
+                    return;
+                }
+                    
+
+                throw;
+            }
+
+            
+        }
+
+        private void btXoa_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SALARY s = new SALARY();
+                s.SALARYID = int.Parse(txtMaLuong.Text);
+
+                //Gọi sự kiện xóa của BUS
+                if (bLuong.XoaLuongTheoSalaryID(s))
+                {
+                    MessageBox.Show("Xóa thành công!");
+                    bLuong.LayDSLuong(dataGridView1);
+                }
+                else
+                {
+                    MessageBox.Show("Xóa thất bại!");
+                    FQuanLyLuong f1 = new FQuanLyLuong();
+                    f1.StartPosition = FormStartPosition.CenterScreen;
+                    f1.Show();
+                    Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                if (ex is System.FormatException)
+                {
+                    MessageBox.Show("Hãy chọn 1 dòng có sẵn phía dưới!");
+                    return;
+                }
+                
+                throw;
+            }
+
         }
     }
 }

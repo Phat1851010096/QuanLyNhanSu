@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace QuanLyNhanSu.BUS
             dLuong = new DAO_Luong();
         }
 
-        public void LayDSSanPham(DataGridView dg)
+        public void LayDSLuong(DataGridView dg)
         {
             dg.DataSource = dLuong.LayDSLuong();
         }
@@ -41,7 +42,29 @@ namespace QuanLyNhanSu.BUS
             return dLuong.TaoLuongChoChucVu(maChucVu, luongCoBan);
         }
 
+        public bool SuaLuongTheoPositionID(SALARY s)
+        {
+            if (dLuong.SuaLuongTheoPositionID(s))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
+        public bool XoaLuongTheoSalaryID(SALARY s)
+        {
+            if (dLuong.XoaLuongTheoSalaryID(s))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     }
 }

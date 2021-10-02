@@ -76,5 +76,76 @@ namespace QuanLyNhanSu.DAO
 
             return ketQua;
         }
+
+
+        public bool KiemTraLuongTheoSalaryID(SALARY s)
+        {
+            SALARY o = db.SALARies.Find(s.SALARYID);
+            if (s != null)
+            {
+                return true;
+            }
+            else return false;
+        }
+
+
+        public int TimSalaryID_Tu_PositionID(SALARY s)
+        {
+            try
+            {
+                var query = (from sa in db.SALARies
+                             where sa.POSITIONID == s.POSITIONID
+                             select sa.SALARYID).ToList();
+                int value = query[0];
+                    Console.WriteLine("SalaryID = " + value + " ---PositionID = " + s.POSITIONID);
+
+                return value;
+            }
+            catch (Exception)
+            {
+                return -1;
+                throw;
+            }
+        }
+
+        public bool SuaLuongTheoPositionID(SALARY s)
+        {
+            try
+            {
+                int ID = TimSalaryID_Tu_PositionID(s);
+
+                SALARY o = db.SALARies.Find(ID);
+                o.BASICSALARY = s.BASICSALARY;
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi xảy ra ở CSDL!!!");
+                Console.WriteLine("-- DAO -> SuaLuongTheoPositionID");
+                Console.WriteLine(ex.Message +"\n--");
+                return false;
+            }
+            return true;
+        }
+
+        public bool XoaLuongTheoSalaryID(SALARY s)
+        {
+            try
+            {
+                
+                SALARY salary = db.SALARies.Find(s.SALARYID);
+                db.SALARies.Remove(salary);
+                db.SaveChanges();      
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("s.SALARYID " + s.SALARYID + " - " +  ex.Message);
+                MessageBox.Show("Không thể xóa mã lương này! \nMã lương tồn tại ở bảng Chi tiết lương");
+                return false;
+                
+            }
+            return true;
+        }
+
     }
 }
