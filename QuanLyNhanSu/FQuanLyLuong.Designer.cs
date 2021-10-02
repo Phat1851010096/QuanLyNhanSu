@@ -78,6 +78,7 @@
             this.btThem.Text = "Thêm";
             this.btThem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btThem.UseVisualStyleBackColor = true;
+            this.btThem.Click += new System.EventHandler(this.btThem_Click);
             // 
             // btThoat
             // 
@@ -94,6 +95,7 @@
             this.btThoat.Text = "Thoát ";
             this.btThoat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btThoat.UseVisualStyleBackColor = true;
+            this.btThoat.Click += new System.EventHandler(this.btThoat_Click);
             // 
             // btXoa
             // 

@@ -36,7 +36,10 @@ namespace QuanLyNhanSu.BUS
             cb.ValueMember = "PositionID";
         }
 
-
+        public bool TaoLuongChoChucVu(int maChucVu, double luongCoBan)
+        {
+            return dLuong.TaoLuongChoChucVu(maChucVu, luongCoBan);
+        }
 
 
 
