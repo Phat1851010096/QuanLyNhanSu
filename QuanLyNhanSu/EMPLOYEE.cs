@@ -24,11 +24,11 @@ namespace QuanLyNhanSu
         public int POSITIONID { get; set; }
         public int DEPARTMENTID { get; set; }
         public string FULLNAME { get; set; }
-        public Nullable<System.DateTime> BIRTHDATE { get; set; }
+        public System.DateTime BIRTHDATE { get; set; }
         public string ADDRESS { get; set; }
-        public Nullable<System.DateTime> DATESTARTWORKING { get; set; }
+        public System.DateTime DATESTARTWORKING { get; set; }
         public string SEX { get; set; }
-        public Nullable<decimal> PHONE { get; set; }
+        public decimal PHONE { get; set; }
     
         public virtual DEPARTMENT DEPARTMENT { get; set; }
         public virtual POSITION POSITION { get; set; }

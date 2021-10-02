@@ -23,6 +23,11 @@ namespace QuanLyNhanSu.BUS
             dg.DataSource = dNhanVien.LayDSNV();
         }
 
+        public List<EMPLOYEE> HienThiDSNhanVien()
+        {
+            return dNhanVien.LayDSNVReport();
+        }
+
         public void LayDSChucVu(ComboBox cb)
         {
             cb.DataSource = dNhanVien.LayDSChucVu();

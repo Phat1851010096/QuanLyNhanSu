@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QuanLyNhanSu.BUS;
+using QuanLyNhanSu.Report;
+
 
 namespace QuanLyNhanSu
 {
@@ -204,5 +206,19 @@ namespace QuanLyNhanSu
             }
 
         }
+
+        private void reportLuong_Click(object sender, EventArgs e)
+        {
+            CrystalReport_Luong r = new CrystalReport_Luong();
+            r.SetDataSource(bLuong.LayDSLuongReport().ToList());
+
+            FReportNhanVien f = new FReportNhanVien();
+            f.crystalReportViewer1.ReportSource = r;
+            //Lay du lieu do vao report
+
+            f.Show();
+        }
+
+       
     }
 }

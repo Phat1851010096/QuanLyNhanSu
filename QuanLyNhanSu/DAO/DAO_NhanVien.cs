@@ -36,6 +36,14 @@ namespace QuanLyNhanSu.DAO
             return ds;
         }
 
+
+        public List<EMPLOYEE> LayDSNVReport()
+        {
+            var ds = db.EMPLOYEEs.Select(s => s).ToList();
+            return ds;
+        }
+
+
         public dynamic LayDSChucVu()
         {
             var ds = db.POSITIONs.Select(s => new

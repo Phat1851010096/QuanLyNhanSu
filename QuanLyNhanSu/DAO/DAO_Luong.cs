@@ -39,6 +39,19 @@ namespace QuanLyNhanSu.DAO
             return ds;
         }
 
+        public List<SALARY> LayDSLuongReport()
+        {
+            var ds = db.SALARies.Select(s => s).ToList();
+            return ds;
+        }
+
+        public List<SALARY_DETAIL> LayDSChiTietLuongReport()
+        {
+            var ds = db.SALARY_DETAIL.Select(s => s).ToList();
+            return ds;
+        }
+        
+
         public dynamic LayDSChucVu()
         {
             var ds = db.POSITIONs.Select(s => new {

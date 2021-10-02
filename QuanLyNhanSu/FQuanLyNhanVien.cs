@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using QuanLyNhanSu.Report;
+
 namespace QuanLyNhanSu
 {
     public partial class FQuanLyNhanVien : Form
@@ -131,6 +133,19 @@ namespace QuanLyNhanSu
             {
                 MessageBox.Show("Sửa thông tin nhân viên thất bại");
             }
+        }
+
+        private void reportNhanVien_Click(object sender, EventArgs e)
+        {
+
+            CrystalReport_NhanVien r = new CrystalReport_NhanVien();
+            r.SetDataSource(busNhanVien.HienThiDSNhanVien().ToList());
+
+            FReportNhanVien f = new FReportNhanVien();
+            f.crystalReportViewer1.ReportSource = r;
+            //Lay du lieu do vao report
+
+            f.Show();
         }
     }
 }

@@ -30,6 +30,16 @@ namespace QuanLyNhanSu.BUS
             dg.DataSource = dLuong.LayDSLuong();
         }
 
+        public List<SALARY> LayDSLuongReport()
+        {
+            return dLuong.LayDSLuongReport();
+        }
+
+        public List<SALARY_DETAIL> LayDSChiTietLuongReport()
+        {
+            return dLuong.LayDSChiTietLuongReport();
+        }
+
         public void LayDSChucVu(ComboBox cb)
         {
             cb.DataSource = dLuong.LayDSChucVu();

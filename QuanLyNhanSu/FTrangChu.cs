@@ -60,5 +60,7 @@ namespace QuanLyNhanSu
             f.StartPosition = FormStartPosition.CenterScreen;
             f.Show();
         }
+
+
     }
 }

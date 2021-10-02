@@ -42,6 +42,7 @@
             this.txtLuongCoBan = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbChucVu = new System.Windows.Forms.ComboBox();
+            this.reportLuong = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -51,6 +52,7 @@
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox2.Controls.Add(this.reportLuong);
             this.groupBox2.Controls.Add(this.btThem);
             this.groupBox2.Controls.Add(this.btThoat);
             this.groupBox2.Controls.Add(this.btXoa);
@@ -71,7 +73,7 @@
             this.btThem.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btThem.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btThem.Location = new System.Drawing.Point(205, 18);
+            this.btThem.Location = new System.Drawing.Point(360, 18);
             this.btThem.Name = "btThem";
             this.btThem.Size = new System.Drawing.Size(44, 33);
             this.btThem.TabIndex = 1;
@@ -105,7 +107,7 @@
             this.btXoa.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btXoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btXoa.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btXoa.Location = new System.Drawing.Point(481, 18);
+            this.btXoa.Location = new System.Drawing.Point(535, 18);
             this.btXoa.Name = "btXoa";
             this.btXoa.Size = new System.Drawing.Size(49, 33);
             this.btXoa.TabIndex = 0;
@@ -122,7 +124,7 @@
             this.btSua.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btSua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btSua.Location = new System.Drawing.Point(338, 18);
+            this.btSua.Location = new System.Drawing.Point(454, 18);
             this.btSua.Name = "btSua";
             this.btSua.Size = new System.Drawing.Size(47, 33);
             this.btSua.TabIndex = 0;
@@ -215,6 +217,23 @@
             this.cbChucVu.Size = new System.Drawing.Size(216, 23);
             this.cbChucVu.TabIndex = 15;
             // 
+            // reportLuong
+            // 
+            this.reportLuong.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.reportLuong.FlatAppearance.BorderSize = 0;
+            this.reportLuong.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.reportLuong.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.reportLuong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.reportLuong.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.reportLuong.Location = new System.Drawing.Point(219, 18);
+            this.reportLuong.Name = "reportLuong";
+            this.reportLuong.Size = new System.Drawing.Size(87, 33);
+            this.reportLuong.TabIndex = 2;
+            this.reportLuong.Text = "Report Lương";
+            this.reportLuong.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.reportLuong.UseVisualStyleBackColor = true;
+            this.reportLuong.Click += new System.EventHandler(this.reportLuong_Click);
+            // 
             // FQuanLyLuong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -256,5 +275,6 @@
         private System.Windows.Forms.TextBox txtLuongCoBan;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cbChucVu;
+        private System.Windows.Forms.Button reportLuong;
     }
 }
